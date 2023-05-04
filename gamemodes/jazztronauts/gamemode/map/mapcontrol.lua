@@ -3,6 +3,9 @@ module( 'mapcontrol', package.seeall )
 local defaultMapHost = "http://host.foohy.net/jazz/data/addons.txt"
 local defaultAddonCache = "jazztronauts/addons.txt"
 local overrideAddonCache = "jazztronauts/addons_override.txt"
+local mapNames = {}
+local mapNamesJSON = file.Read("data/cfg/mapNames.json", "GAME")
+mapNames = util.JSONToTable(mapNamesJSON)
 
 local fallbackVersion = VERSION < 210618 -- Maps unmounted fixed in gmod dev branch version 210618. Before that, fallback to local addons/maps instead
 
@@ -60,15 +63,15 @@ function IsInGamemodeMap()
 end
 
 function GetIntroMap()
-	return "jazz_intro"
+	return mapNames["IntroMap"]
 end
 
 function GetEncounterMap()
-	return "jazz_apartments"
+	return mapNames["EncounterMap"]
 end
 
 function GetEndMaps()
-	return { "jazz_outro", "jazz_outro2" }
+	return mapNames["EndMaps"]
 end
 
 function GetNextEncounter()
@@ -94,7 +97,7 @@ function GetNextEncounter()
 end
 
 function GetHubMap()
-	return "jazz_bar"
+	return mapNames["HubMap"]
 end
 
 function GetMapID(mapname)

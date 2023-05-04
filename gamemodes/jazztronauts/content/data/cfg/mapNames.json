@@ -1,0 +1,6 @@
+{
+    "IntroMap": "jazz_intro",
+    "EncounterMap": "jazz_apartments",
+    "EndMaps": ["jazz_outro", "jazz_outro2"],
+    "HubMap": "jazz_bar"
+}

@@ -2,15 +2,22 @@ module( "missions", package.seeall )
 
 ResetMissions()
 
-NPC_COMPUTER = 666
-AddNPC("NPC_CAT_BAR", jazzloc.Localize("jazz.cat.bartender"), "models/andy/bartender/cat_bartender.mdl")
-AddNPC("NPC_CAT_SING", jazzloc.Localize("jazz.cat.singer"), "models/andy/singer/cat_singer.mdl")
-AddNPC("NPC_CAT_PIANO", jazzloc.Localize("jazz.cat.pianist"), "models/andy/pianist/cat_pianist.mdl")
-AddNPC("NPC_CAT_CELLO", jazzloc.Localize("jazz.cat.cellist"), "models/andy/cellist/cat_cellist.mdl")
-AddNPC("NPC_NARRATOR", "", "models/npc/cat.mdl")
-AddNPC("NPC_BAR", "")
-AddNPC("NPC_CAT_VOID", jazzloc.Localize("jazz.cat.unknown"), "models/andy/basecat/cat_all.mdl")
-AddNPC("NPC_CAT_ASH", jazzloc.Localize("jazz.cat.ash"), "models/andy/basecat/cat_all.mdl")
+include("jazz_localize.lua")
+
+local npcTable = {}
+local npcTableJSON = file.Read("data/tables/npcTable.json", "GAME")
+npcTable = util.JSONToTable(npcTableJSON)
+for k, v in pairs(npcTable) do
+	AddNPC(v[1], jazzloc.JazzLocalize(v[2]), v[3])
+
+-- AddNPC("NPC_CAT_BAR", jazzloc.JazzLocalize("jazz.cat.bartender"), "models/andy/bartender/cat_bartender.mdl")
+-- AddNPC("NPC_CAT_SING", jazzloc.JazzLocalize("jazz.cat.singer"), "models/andy/singer/cat_singer.mdl")
+-- AddNPC("NPC_CAT_PIANO", jazzloc.JazzLocalize("jazz.cat.pianist"), "models/andy/pianist/cat_pianist.mdl")
+-- AddNPC("NPC_CAT_CELLO", jazzloc.JazzLocalize("jazz.cat.cellist"), "models/andy/cellist/cat_cellist.mdl")
+-- AddNPC("NPC_NARRATOR", "", "models/npc/cat.mdl")
+-- AddNPC("NPC_BAR", "")
+-- AddNPC("NPC_CAT_VOID", jazzloc.JazzLocalize("jazz.cat.unknown"), "models/andy/basecat/cat_all.mdl")
+-- AddNPC("NPC_CAT_ASH", jazzloc.JazzLocalize("jazz.cat.ash"), "models/andy/basecat/cat_all.mdl")
 
 -- Utility function for giving a player a monetary reward
 local function GrantMoney(amt)

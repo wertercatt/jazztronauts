@@ -4,7 +4,7 @@ local defaultMapHost = "http://host.foohy.net/jazz/data/addons.txt"
 local defaultAddonCache = "jazztronauts/addons.txt"
 local overrideAddonCache = "jazztronauts/addons_override.txt"
 local mapNames = {}
-local mapNamesJSON = file.Read("data/cfg/mapNames.json", "GAME")
+local mapNamesJSON = file.Read("data/tables/mapNames.json", "GAME")
 mapNames = util.JSONToTable(mapNamesJSON)
 
 local fallbackVersion = VERSION < 210618 -- Maps unmounted fixed in gmod dev branch version 210618. Before that, fallback to local addons/maps instead

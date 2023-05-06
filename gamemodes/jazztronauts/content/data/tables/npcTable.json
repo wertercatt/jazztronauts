@@ -1,0 +1,42 @@
+[
+    {
+        "script_name": "NPC_CAT_BAR",
+        "localization_name": "jazz.cat.bartender",
+        "model": "models/andy/bartender/cat_bartender.mdl"
+    },
+    {    
+        "script_name": "NPC_CAT_SING",
+        "localization_name": "jazz.cat.singer",
+        "model": "models/andy/singer/cat_singer.mdl"
+    },
+    {    
+        "script_name": "NPC_CAT_PIANO",
+        "localization_name": "jazz.cat.pianist",
+        "model": "models/andy/pianist/cat_pianist.mdl"
+    },
+    {    
+        "script_name": "NPC_CAT_CELLO",
+        "localization_name": "jazz.cat.cellist",
+        "model": "models/andy/cellist/cat_cellist.mdl"
+    },
+    {    
+        "script_name": "NPC_NARRATOR",
+        "localization_name": "",
+        "model": "models/npc/cat.mdl"
+    },
+    {    
+        "script_name": "NPC_BAR",
+        "localization_name": "",
+        "model": ""
+    },
+    {    
+        "script_name": "NPC_CAT_VOID",
+        "localization_name": "jazz.cat.unknown",
+        "model": "models/andy/basecat/cat_all.mdl"
+    },
+    {    
+        "script_name": "NPC_CAT_ASH",
+        "localization_name": "jazz.cat.ash",
+        "model": "models/andy/basecat/cat_all.mdl"
+    }
+]

@@ -1,0 +1,20 @@
+begin:
+    *hide*
+	spawngang()
+    *setspeaker narrator*
+    *show 0.5*
+    as promised let's do this thing, writing it live
+    &a1
+
+a1:
+    >The Pianist is staring intently at The Singer, opens her mouth, closes it,
+    then visibly collects her determination.
+    &a2
+
+a2:
+    *setspeaker cat_piano*
+    Hey, Pipes, are we ever gonna address the elephant with a fucking
+    bonkers level of cognitive dissonance in the room or should I just accept
+    I'm a zookeeper now?
+
+

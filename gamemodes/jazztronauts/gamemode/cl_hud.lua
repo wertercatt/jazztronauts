@@ -1,7 +1,5 @@
 //Draws the dynamic money counter
 
-include("jazz_localize.lua")
-
 //MODIFIABLES
 local HideDelay = 2 //How many seconds to show the amt after it is done filling the counter?
 local FillDelay = propfeed.StayDuration //Number of seconds before the money can begin filling
@@ -20,7 +18,7 @@ local VisualAmount = 0
 local HideTime = mapcontrol.IsInHub() and math.huge or 0
 local moneyFillDelay = 0 //Delay before the money begin filling into the main dude
 local moneyFillVelocity = 1 //Amount of money to fill per frame. Adjusted based on how many money to fill
-local lastMoneyCount = 0
+local lastMoneyCount = -1
 local isFadingOut = false
 
 local catcoin = Material("materials/ui/jazztronauts/catcoin.png", "smooth")
@@ -73,20 +71,27 @@ local function drawTextRotated(text, font, x, y, color, rotation, maxWidth)
 end
 
 local function DrawNoteCount()
-	local amt = LocalPlayer() && LocalPlayer():GetNotes() or 0
-	if amt != lastMoneyCount then
+	local amt = LocalPlayer() and LocalPlayer():GetNotes() or 0
+
+	--fix just loading in
+	if lastMoneyCount < 0 and amt ~= 0 then
+		lastMoneyCount = amt
+		VisualAmount = amt
+	end
+
+	if amt ~= lastMoneyCount then
 		-- Only delay if earning money
 		if amt > lastMoneyCount then
-			moneyFillDelay = CurTime() + FillDelay
+			moneyFillDelay = CurTime() + FillDelay:GetFloat()
 		end
 
 		lastMoneyCount = amt
 	end
-	if amt != VisualAmount then
+	if amt ~= VisualAmount then
 		HideTime = CurTime() + HideDelay
 	end
 
-	if CurTime() > HideTime && CurAlpha <= 0 then return //Don't draw if the alpha is 0
+	if CurTime() > HideTime and CurAlpha <= 0 then return //Don't draw if the alpha is 0
 	elseif CurTime() > HideTime then
 		CurAlpha = math.Clamp(CurAlpha - (FrameTime() * FadeSpeed ), 0, 255 )
 	else
@@ -95,7 +100,7 @@ local function DrawNoteCount()
 
 	-- Current multiplier for all earned money
 	local noteMultiplier = newgame.GetMultiplier()
-	local finalText = JazzLocalize("jazz.hud.money",string.Comma( VisualAmount ))
+	local finalText = jazzloc.Localize("jazz.hud.money",string.Comma( VisualAmount ))
 
 	surface.SetFont( "JazzNote")
 	bgWidth, bgHeight = surface.GetTextSize( finalText )
@@ -123,7 +128,7 @@ local function DrawNoteCount()
 	end
 	text = text .. tostring( amt - VisualAmount )
 
-	if amt - VisualAmount != 0 then
+	if amt - VisualAmount ~= 0 then
 		draw.DrawText( text, "JazzNoteFill", ScrW() - distFromSide, bgHeight + ScreenScale(6), color, TEXT_ALIGN_RIGHT)
 	end
 
@@ -171,11 +176,11 @@ local function DrawBlackShardCount()
 
 	local sucktime = bshard:GetStartSuckTime()
 	local left, total = sucktime > 0 and sucktime < CurTime() and 0 or 1, 1
-	local str = JazzLocalize("jazz.shards.one")
+	local str = jazzloc.Localize("jazz.shards.one")
 	local color = Color(100, 100, 100, 100)
 	if left == 0 then
 		color = Color(200, 10, 10)
-		str = JazzLocalize("jazz.shards.none")
+		str = jazzloc.Localize("jazz.shards.none")
 	end
 
 	surface.SetFont("JazzBlackShard")
@@ -189,10 +194,10 @@ local function DrawShardCount()
 	if GAMEMODE:IsWaitingForPlayers() then return end
 
 	local left, total = mapgen.GetShardCount()
-	local str = JazzLocalize("jazz.shards.partialcollected",total - left,total)
+	local str = jazzloc.Localize("jazz.shards.partialcollected",total - left,total)
 	local color = Color(143, 0, 255, 100)
 	if left == 0 then
-		str = JazzLocalize("jazz.shards.all",total)
+		str = jazzloc.Localize("jazz.shards.all",total)
 		color = HSVToColor(math.fmod(CurTime() * 360, 360), .3, .7)
 	end
 

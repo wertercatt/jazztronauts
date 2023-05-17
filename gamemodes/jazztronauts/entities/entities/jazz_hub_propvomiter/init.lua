@@ -14,6 +14,7 @@ ENT.DisableDuplicator = true
 ENT.VomitMusicFile = Sound("jazztronauts/music/trash_chute_music_loop.wav")
 ENT.VomitFinishFile = Sound("jazztronauts/music/trash_chute_music_stop.wav")
 ENT.VomitEmptyFile = Sound("jazztronauts/music/trash_chute_music_empty.wav")
+ENT.VomitSpeed = 2 -- Props per vomit
 ENT.StartDelay = 0 -- Delay before anything at all happens
 ENT.MusicDelay = 3.5 -- Delay to let the music play before props begin to fall
 ENT.ConstipateDelay = 10.5 -- Delay when the tube is constipated
@@ -116,7 +117,7 @@ function ENT:Think()
 	if self.IsStopping then return end
 
 	if not self.Constipated then
-		self:VomitMultiple(2)
+		self:VomitMultiple(self.VomitSpeed)
 	end
 
 	jazzboards.UpdateLeaderboards(self.CurrentUser, -self.TotalCount)
@@ -178,11 +179,6 @@ function ENT:VomitNewProps(ply)
 	CreatePrecacheTask(self.SpawnQueue, function()
 		local loadTime = CurTime() - loadStartTime
 		print("LOAD TOOK: " .. loadTime .. " seconds!")
-
-		-- Add this as a 'session' prop for leaderboards
-		if IsValid(self.CurrentUser) then
-			jazzboards.AddSessionProps(self.CurrentUser:SteamID64(), self.TotalCount)
-		end
 
 		-- Random chance for the pipe to be constipated
 		local empty = next(self.SpawnQueue) == nil
@@ -328,6 +324,19 @@ end
 function ENT:AcceptInput( name, activator, caller, data )
 	if name == "Vomit" and not self:IsActive() then
 		self:VomitNewProps(activator)
+		return true
+	end
+	number = tonumber(data)
+	if name == "SetSpeed" then
+		if number > 0 then
+			self.VomitSpeed = number
+		else
+			self.VomitSpeed = 1
+		end
+		return true
+	end
+	if name == "SetConstipateOdds" then
+		self.ConstipateOdds = number
 		return true
 	end
 

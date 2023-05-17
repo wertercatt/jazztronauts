@@ -1,0 +1,9 @@
+[
+    {
+        "mission_id": 0,
+        "npc_id": 4,
+        "number_needed": 15,
+        "localization_name": "jazz.mission.drums",
+        
+    }
+]

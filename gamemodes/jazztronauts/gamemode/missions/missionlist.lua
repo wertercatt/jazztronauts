@@ -8,7 +8,8 @@ local npcTable = {}
 local npcTableJSON = file.Read("data/tables/npcTable.json", "GAME")
 npcTable = util.JSONToTable(npcTableJSON)
 for k, v in pairs(npcTable) do
-	AddNPC(v[1], jazzloc.JazzLocalize(v[2]), v[3])
+	AddNPC(v["script_name"], jazzloc.JazzLocalize(v["localization_name"]), v["model"])
+end
 
 -- AddNPC("NPC_CAT_BAR", jazzloc.JazzLocalize("jazz.cat.bartender"), "models/andy/bartender/cat_bartender.mdl")
 -- AddNPC("NPC_CAT_SING", jazzloc.JazzLocalize("jazz.cat.singer"), "models/andy/singer/cat_singer.mdl")
@@ -53,6 +54,12 @@ local function MatchesAny(mdl, tbl)
 	return false
 end
 
+-- local missionTable = {}
+-- local missionTableJSON = file.Read("data/tables/missionTable.json", "GAME")
+-- missionTable = util.JSONToTable(missionTableJSON)
+-- for k, v in pairs(missionTable) do
+-- 	AddNPC(v["script_name"], JazzLocalize(v["localization_name"]), v["model"])
+-- end
 
 local function oildrums(mdl)
 	--[[return MatchesAny(mdl, {
@@ -115,7 +122,6 @@ local function beer(mdl)
 	string.match(mdl, "molotov") or
 	string.match(mdl, "molly")
 end
-
 
 local count = 15
 

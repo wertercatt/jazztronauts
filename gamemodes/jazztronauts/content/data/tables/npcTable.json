@@ -38,5 +38,10 @@
         "script_name": "NPC_CAT_ASH",
         "localization_name": "jazz.cat.ash",
         "model": "models/andy/basecat/cat_all.mdl"
+    },
+    {    
+        "script_name": "NPC_NED",
+        "localization_name": "jazz.custom.nedmod.npcs.ned",
+        "model": "models/police.mdl"
     }
 ]

@@ -173,7 +173,7 @@ cello_trueending:
         return maybe(7, 5)
     &cello_truebark6:
         return maybe(7, 6)
-    &begin12:
+    &cello_truebark7:
         return maybe(7, 7)
 
 bar_bark1:
@@ -501,12 +501,20 @@ cello_truebark5:
 
 cello_truebark6:
     *setauto*
-     can I ask you a favor? if you see a metrocop with a little cat 
-     emblem pin out there in the Void, tell them The Cellist says 
-     hello...and that he’s sorry.
-     &exit
+    can I ask you a favor? if you see a metrocop with a little cat 
+    emblem pin out there in the Void, tell them The Cellist says 
+    hello...and that he’s sorry.
+    &exit
 
-
+cello_truebark7:
+    *setauto*
+    Hey it's been a while how've y*emitsound ambient/materials/door_hit1.wav*-
+    *slam [CRASH THROUGH DOOR]**shake 0.25*
+    *setskin focus 3* *emitsound npc/metropolice/gear1.wav*%*emitsound npc/metropolice/gear2.wav*%
+    *slam FUCK.* *emitsound npc/metropolice/gear3.wav*% BAIL.
+    *emitsound npc/metropolice/takedown.wav*"ＴＡＫＥ ＨＩＭ ＤＯＷＮ" *punch**emitsound npc/vort/foot_hit.wav**fadeblind**dsp 37*
+    *setskin focus 0*
+    &exit
 
 
 
@@ -549,18 +557,24 @@ itsthattime4:
     &exit
 
 
-begin12:
-    Hey it's been a while how've y*emitsound ambient/materials/door_hit1.wav*-
-    *slam [CRASH THROUGH DOOR]**shake 0.25*
-    *setskin focus 3* *emitsound npc/metropolice/gear1.wav*%*emitsound npc/metropolice/gear2.wav*%
-    *slam FUCK.* *emitsound npc/metropolice/gear3.wav*% BAIL.
-    *emitsound npc/metropolice/takedown.wav*"ＴＡＫＥ ＨＩＭ ＤＯＷＮ" *punch**emitsound npc/vort/foot_hit.wav**fadeblind**dsp 37*
-    *setskin focus 0*
-    &exit
 
-begin4:
-    thanks for doing my grocery shopping
-    &exit
+
+begin9:
+    *setauto*
+    Hey, what anime have you watched?
+    player:
+        &ned1: wh-
+
+ned1:
+    player:
+        &ned2: I dunno man, I watched... One Punch Man, JoJo,
+        Angel Beats. I'd say Attack on Titan but I only watched
+        one episode,
+
+ned2:
+    Ok, how about something that isn't mainstream trash?
+    What about Black Rock Shooter?
+
 begin32:
     WOW!!!!! it's*c 255 0 0* fucking nothing *c*
     *c 50* go fuck yourself

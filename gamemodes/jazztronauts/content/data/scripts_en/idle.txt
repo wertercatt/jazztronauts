@@ -560,6 +560,7 @@ itsthattime4:
 
 
 begin9:
+    *setanim ned busyidle2*
     *setauto*
     Hey, what anime have you watched?
     player:
@@ -575,6 +576,7 @@ ned2:
     *setspeaker ned*
     Ok, how about something that isn't mainstream trash?
     What about Black Rock Shooter?
+    &exit
 
 begin32:
     WOW!!!!! it's*c 255 0 0* fucking nothing *c*

@@ -17,6 +17,10 @@ function ENT:Initialize()
 
 	-- Lookup corresponding npc model
 	local npcinfo = missions.GetNPCInfo(self.NPCID)
+	PrintTable(npcinfo)
+	print(npcinfo.model)
+	print(self.Model)
+	print(npcinfo and npcinfo.model or self.Model)
 	self:SetModel(npcinfo and npcinfo.model or self.Model)
 
 	-- The cats don't actually have a physics model so just make a box around em
@@ -117,6 +121,8 @@ hook.Add("InitPostEntity", "JazzPlaceSingleCat", function()
 		table.insert(NPCS[v.NPCID], v)
 	end
 
+	PrintTable(NPCS)
+
 	-- Select a random only to keep, destroy the rest
 	for id, npcs in pairs(NPCS) do
 		local survivor = table.Random(npcs)
@@ -124,6 +130,12 @@ hook.Add("InitPostEntity", "JazzPlaceSingleCat", function()
 		if IsValid(survivor) then
 			survivor:TriggerOutput("OnPicked", survivor)
 		end
+
+		print(id)
+		PrintTable(npcs)
+		print(survivor)
+		print(IsValid(survivor))
+		print(survivor.Model)
 
 		-- Kill the rest
 		for _, v in pairs(npcs) do

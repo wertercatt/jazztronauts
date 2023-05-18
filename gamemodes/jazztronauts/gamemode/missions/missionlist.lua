@@ -2,13 +2,11 @@ module( "missions", package.seeall )
 
 ResetMissions()
 
-include("jazz_localize.lua")
-
 local npcTable = {}
 local npcTableJSON = file.Read("data/tables/npcTable.json", "GAME")
 npcTable = util.JSONToTable(npcTableJSON)
 for k, v in pairs(npcTable) do
-	AddNPC(v["script_name"], jazzloc.JazzLocalize(v["localization_name"]), v["model"])
+	AddNPC(v["script_name"], jazzloc.Localize(v["localization_name"]), v["model"])
 end
 
 -- AddNPC("NPC_CAT_BAR", jazzloc.JazzLocalize("jazz.cat.bartender"), "models/andy/bartender/cat_bartender.mdl")

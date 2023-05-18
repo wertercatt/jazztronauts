@@ -42,6 +42,6 @@
     {    
         "script_name": "NPC_NED",
         "localization_name": "jazz.custom.nedmod.npcs.ned",
-        "model": "models/police.mdl"
+        "model": "models/Police.mdl"
     }
 ]

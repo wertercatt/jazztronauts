@@ -572,6 +572,7 @@ ned1:
         one episode,
 
 ned2:
+    *setspeaker ned*
     Ok, how about something that isn't mainstream trash?
     What about Black Rock Shooter?
 
